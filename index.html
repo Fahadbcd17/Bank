@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bank</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="download.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="font-area">
+        <h1 class="text-center pb-5">Welcome To My Bank</h1>
+        <div class="submit-area">
+            <h3>Login</h3>
+            <input type="text" class=" form-control" placeholder="E-mail"><br>
+            <input type="password" class=" form-control" placeholder="Password"><br>
+            <button id="enter" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+
+    <div id="back-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="deposit common">
+                        <h5>Deposit</h5>
+                        <h3>$ <span id="DepositeShow">00</span> </h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="withdraw common">
+                        <h5>Withdraw</h5>
+                        <h3>$ <span id="withdrawShow">00</span> </h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="balance common">
+                        <h5>Balance</h5>
+                        <h3>$ <span id="totalBalance">1200</span> </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="submit-area">
+                        <h4>Deposit</h4>
+                        <input id="depositInput" type="text" class="form-control" placeholder="$ amount you want to Deposit"><br>
+                        <button id="depositBtn" class="btn btn-success">Deposit</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="submit-area ">
+                        <h4>Withdraw</h4>
+                        <input id="withdrawInput" type="text" class="form-control" placeholder="$ amount you want to withdraw"><br>
+                        <button id="withdrawbtn" class="btn btn-success">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var clickToLogin = document.getElementById("enter");
+        clickToLogin.addEventListener("click", function() {
+            var firstPage = document.getElementById("font-area");
+            firstPage.style.display = "none";
+            var secondPage = document.getElementById("back-area");
+            secondPage.style.display = "block";
+        })
+
+
+        var depositBtn = document.getElementById("depositBtn");
+        depositBtn.addEventListener("click", function() {
+
+            var depositInput = document.getElementById("depositInput").value;
+            var convert = parseFloat(depositInput);
+            document.getElementById("depositInput").value = "";
+
+            boss("totalBalance", convert)
+            boss("DepositeShow", convert)
+
+        })
+
+
+        function boss(id, convert) {
+            var totalBalance = document.getElementById(id).innerText;
+            var convertThird = parseFloat(totalBalance);
+            var result = convert + convertThird;
+            document.getElementById(id).innerText = result;
+        }
+
+
+
+        var withdrawbtn = document.getElementById("withdrawbtn");
+        withdrawbtn.addEventListener("click", function() {
+            var withdrawInput = document.getElementById("withdrawInput").value;
+            var convert = parseFloat(withdrawInput);
+            boss("withdrawShow", convert);
+            boss("totalBalance", -1 * convert);
+        })
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
